@@ -780,6 +780,10 @@ public class RobotContainer {
                 new SetScoralArmTarget(scoralArm, 29, 2),
                 new SetClimberArmTarget(climberArm, 60, 2)));
 
+    // Sid K added this
+    manipController.a().onTrue(new SetScoralArmTarget(scoralArm, 60, 4));
+    // Sid K added this
+
     // not sure if it works
     // manipController
     //     .start()
