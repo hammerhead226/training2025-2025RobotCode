@@ -18,17 +18,17 @@ import frc.robot.subsystems.scoral.ScoralRollers;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GoToStowAuto extends SequentialCommandGroup {
   /** Creates a new GoToStowAuto. */
-  public GoToStowAuto(Elevator elevator, ScoralArm scoralArm, ScoralRollers scoralRollers) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+  public GoToStowAuto(/*add them here */) {
+    
+    //Add the elvator object, scoralArm object, and scoralRollers object to the command
 
     addCommands(
-        new InstantCommand(() -> scoralArm.setConstraints(300, 600)),
-        new SetScoralArmTarget(scoralArm, ScoralArmConstants.STOW_SETPOINT_DEG - 6, 20),
-        new InstantCommand(() -> scoralArm.setConstraints(150, 300)),
-        scoralRollers.stopCommand(),
-        new WaitUntilCommand(() -> scoralArm.atGoal(10)),
-        new SetElevatorTarget(elevator, ElevatorConstants.STOW_SETPOINT_INCH, 15),
-        new SetScoralArmTarget(scoralArm, ScoralArmConstants.STOW_SETPOINT_DEG, 2));
+        //create an instant command to set the constraints of the scoral arm to 300, 600
+        //create a setScoralArmTarget command to move the scoral arm to the stow setpoint - 6 degrees with a tolerance of 20 degrees
+        //create an instant command to set the constraints of the scoral arm to 150, 300
+        //create a stop command for the scoral rollers
+        //create a wait until command to wait until the scoral arm is at its goal with a tolerance of 10 degrees
+        //create a setElevatorTarget command to move the elevator to the stow setpoint with a tolerance of 15 inches
+        //create a setScoralArmTarget command to move the scoral arm to the stow setpoint with a tolerance of 2 degrees
   }
 }

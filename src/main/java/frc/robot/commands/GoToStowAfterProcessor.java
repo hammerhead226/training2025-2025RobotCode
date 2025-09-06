@@ -21,21 +21,26 @@ public class GoToStowAfterProcessor extends SequentialCommandGroup {
 
   private final ScoralArm scoralArm;
   private final ScoralRollers scoralRollers;
+  //create the elvator object
+  //create the scoralArm object
+  //create the scoralRollers object
 
   public GoToStowAfterProcessor(
-      Elevator m_elevator, ScoralArm m_scoralArm, ScoralRollers m_scoralRollers) {
+      ) {
+        //Add the elvator object, scoralArm object, and scoralRollers object to the command
+  
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    this.elevator = m_elevator;
-    this.scoralArm = m_scoralArm;
-    this.scoralRollers = m_scoralRollers;
+   
+    //set the value of the objects you create to the constructors parameters using this. 
+
 
     addCommands(
-        new SetScoralArmTarget(scoralArm, ScoralArmConstants.STOW_SETPOINT_DEG - 6, 10),
-        scoralRollers.stopCommand(),
-        new WaitUntilCommand(() -> scoralArm.atGoal(10)),
-        new SetElevatorTarget(elevator, ElevatorConstants.STOW_SETPOINT_INCH, 2),
-        // new SetScoralArmTarget(scoralArm, ScoralArmConstants.STOW_SETPOINT_DEG - 6, 2),
-        new SetScoralArmTarget(scoralArm, ScoralArmConstants.STOW_SETPOINT_DEG, 2));
+      //create a setScoralArmTarget command to move the scoral arm to the stow setpoint - 6 degrees with a tolerance of 10 degrees
+      //create a stop command for the scoral rollers
+      //create a wait until command to wait until the scoral arm is at its goal with a tolerance of 10 degrees
+      //  create a setElevatorTarget command to move the elevator to the stow setpoint with a tolerance of 2 inches
+      //create a setScoralArmTarget command to move the scoral arm to the stow setpoint with a tolerance of 2 degrees
+        
   }
 }

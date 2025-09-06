@@ -687,8 +687,8 @@ public class RobotContainer {
                         () -> driveController.leftBumper().getAsBoolean())));
 
     driveController
-        .leftBumper()
-        .onFalse(new InstantCommand(() -> led.setState(LED_STATE.PINK_LAVENDER)));
+        //make it so when the left bumper is released (onFalse )it sets the led state to pink lavender
+       
 
     driveController
         .povDown()
@@ -721,17 +721,18 @@ public class RobotContainer {
 
   private void manipControls() {
     manipController
-        .x()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L3)));
+    //if x is clicked then create a new instant command that sets the wanted state to l3
+       
     manipController
-        .y()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L4)));
+    // if the y buyyon is pressed set the wanted state to L4
+       
+    
     manipController
-        .a()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L2)));
+    // if the a button is pressed set the wanted state to L2
+        
     manipController
-        .b()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L1)));
+    // if the b button is pressed set the wanted state to L1
+        
 
     manipController
         .povDown()
@@ -748,10 +749,8 @@ public class RobotContainer {
                 .andThen(new InstantCommand(() -> superStructure.nextState())));
 
     manipController
-        .rightBumper()
-        .onTrue(
-            new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.SOURCE)));
-
+    // if the right bumper is pressed set the wanted state to source
+       
     manipController
         .povLeft()
         .onTrue(new InstantCommand(() -> superStructure.enableAlgaeMode(true)));
