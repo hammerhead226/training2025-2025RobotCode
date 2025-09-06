@@ -113,6 +113,7 @@
               "data_type": "boolean"
             }
           },
+         
           {
             "title": "Reset",
             "x": 1152.0,
