@@ -2,24 +2,8 @@
   "robotWidth": 0.9,
   "robotLength": 0.9,
   "holonomicMode": true,
-  "pathFolders": [
-    "BlueLeft",
-    "BlueLeftL2",
-    "BlueLeftPush",
-    "BlueMiddle",
-    "BlueMiddleLeft",
-    "BlueMiddleLeftL2",
-    "BlueMiddleRight",
-    "BlueMiddleRightL2",
-    "BlueMiddleWaits",
-    "BlueRight",
-    "BlueRightL2",
-    "Center Barge",
-    "Center Processor"
-  ],
-  "autoFolders": [
-    "L2 Variants"
-  ],
+  "pathFolders": [],
+  "autoFolders": [],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,
