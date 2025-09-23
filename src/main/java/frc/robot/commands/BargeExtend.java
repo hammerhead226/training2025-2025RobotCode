@@ -9,19 +9,22 @@ import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.constants.SubsystemConstants;
 import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.scoral.ScoralArm;
+//define your scoralArm and Elevator here
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class BargeExtend extends SequentialCommandGroup {
-  /** Creates a new BargeExtend. */
+//create a bargeextand class that extends sequentialcommandgroup
+
+//then create a constructor that takes in an elevator and a scoralarm
+
+
   public BargeExtend(Elevator elevator, ScoralArm scoralArm) {
+
+   // access them in here by using this.elevator is equal to whatever you took in through the constructor. 
+
+
     // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+   
     addCommands(
-        new SetElevatorTarget(elevator, SubsystemConstants.ElevatorConstants.BARGE_SETPOINT, 15),
-        new WaitUntilCommand(() -> elevator.atGoal(15)),
-        new SetScoralArmTarget(
-            scoralArm, SubsystemConstants.ScoralArmConstants.BARGE_BACK_SETPOINT_DEG, 2));
-  }
-}
+    //now use the command new SetElevatorTarget, that takes stuff you can check and make them any value. 
+    //then make a new wait until command that waits until the elevator is at the goal, and waits 15, elevator.atGoal(15)
+    //then create a new SetScoralArmTarget that takes in the scoralarm, and for now make it any double.s 
+        
