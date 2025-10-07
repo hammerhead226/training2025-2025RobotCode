@@ -1,6 +1,5 @@
 package frc.robot;
 
-import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -416,7 +415,7 @@ public class RobotContainer {
     autos = new SendableChooser<>();
 
     /*autos.addOption("hello", AutoBuilder.buildAuto("hello"));*/
-    //example
+    // example
 
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", autos);
 
@@ -425,6 +424,8 @@ public class RobotContainer {
     //     "Drive Wheel Radius Characterization", DriveCommands.wheelRadiusCharacterization(drive));
     autoChooser.addOption(
         "Drive Simple FF Characterization", DriveCommands.feedforwardCharacterization(drive));
+        autoChooser.addOption(
+        "sigma", DriveCommands.feedforwardCharacterization(drive));
     autoChooser.addOption(
         "Drive SysId (Quasistatic Forward)",
         drive.sysIdQuasistatic(SysIdRoutine.Direction.kForward));
