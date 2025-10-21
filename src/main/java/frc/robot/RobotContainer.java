@@ -1,6 +1,5 @@
 package frc.robot;
 
-import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -37,8 +36,7 @@ import frc.robot.commands.ReinitializingCommand;
 import frc.robot.commands.Rumble;
 import frc.robot.commands.ScoreAlgaeIntoBargeAuto;
 import frc.robot.commands.ScoreCoral;
-//impot the testStateMacine and also the TEST_STATES enum
-
+// impot the testStateMacine and also the TEST_STATES enum
 import frc.robot.commands.SetClimberArmTarget;
 import frc.robot.commands.SetElevatorTarget;
 import frc.robot.commands.SetScoralArmTarget;
@@ -92,7 +90,6 @@ import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 import org.littletonrobotics.junction.networktables.LoggedNetworkBoolean;
 
-
 public class RobotContainer {
   // Subsystems
   private final Drive drive;
@@ -106,14 +103,10 @@ public class RobotContainer {
   private final SuperStructure superStructure;
   private Command climbCommands;
 
-//create a priavte final testStateMachine variable and name it testStateMachine
+  // create a priavte final testStateMachine variable and name it testStateMachine
 
-  
-
- 
   private final CommandXboxController driveController = new CommandXboxController(0);
   private final CommandXboxController manipController = new CommandXboxController(1);
- 
 
   public final Trigger elevatorBrakeTrigger;
   private Trigger slowModeTrigger;
@@ -123,7 +116,7 @@ public class RobotContainer {
   private Trigger turnLimelightON;
   private Trigger autoAlignRelease;
 
-   private final LoggedDashboardChooser<Command> autoChooser;
+  private final LoggedDashboardChooser<Command> autoChooser;
   private final SendableChooser<Command> autos;
   private DigitalInput brakeSwitch;
   private LoggedNetworkBoolean fieldRelative = new LoggedNetworkBoolean("FieldRelative", true);
@@ -138,13 +131,14 @@ public class RobotContainer {
                           .getNorm()
                       < 0.2);
 
-   public RobotContainer() {
+  public RobotContainer() {
     switch (SimConstants.currentMode) {
       case REAL:
         brakeSwitch = new DigitalInput(RobotMap.BrakeSwitchIDs.brakeSwitchChannel);
         elevatorBrakeTrigger = new Trigger(() -> brakeSwitch.get());
-       //we will have to define testStateMachine in REAL, SIM, AND DEFAULT.
-       //so set teh testStateMachine variable equal to a new instance of the testStateMachine class
+        // we will have to define testStateMachine in REAL, SIM, AND DEFAULT.
+        // so set teh testStateMachine variable equal to a new instance of the testStateMachine
+        // class
 
         elevator =
             new Elevator(
@@ -172,9 +166,7 @@ public class RobotContainer {
             new Vision(
                 drive::addVisionMeasurement,
                 new VisionIOLimelight("limelight-reef", () -> drive.getPose().getRotation()),
-                new VisionIOLimelight("limelight-bakreef", () -> drive.getPose().getRotation())
-                
-                );
+                new VisionIOLimelight("limelight-bakreef", () -> drive.getPose().getRotation()));
 
         climberArm =
             new ClimberArm(
@@ -191,12 +183,10 @@ public class RobotContainer {
         superStructure =
             new SuperStructure(drive, elevator, scoralArm, scoralRollers, led, climberArm, winch);
 
-        
-
         break;
       case SIM:
         elevatorBrakeTrigger = new Trigger(() -> true);
-        
+
         drive =
             new Drive(
                 new GyroIO() {},
@@ -214,9 +204,8 @@ public class RobotContainer {
             new Vision(
                 drive::addVisionMeasurement,
                 new VisionIOPhotonVisionSim(
-                    "camera 1 sim", new Transform3d(0, 0, 0, bruh), drive::getPose)
-                
-                );
+                    "camera 1 sim", new Transform3d(0, 0, 0, bruh), drive::getPose));
+
         elevator = new Elevator(new ElevatorIOSim());
         scoralRollers =
             new ScoralRollers(
@@ -225,7 +214,7 @@ public class RobotContainer {
                 CoralState.DEFAULT,
                 AlgaeState.DEFAULT);
         led = new LED(new LED_IOSim());
-        //do it again here in the SIM case
+        // do it again here in the SIM case
         climberArm = new ClimberArm(new ClimberArmIOSim());
 
         superStructure =
@@ -233,9 +222,8 @@ public class RobotContainer {
         break;
 
       default:
- 
         elevatorBrakeTrigger = new Trigger(() -> true);
-        //do it again here in teh Default case
+        // do it again here in teh Default case
         drive =
             new Drive(
                 new GyroIO() {},
@@ -250,9 +238,8 @@ public class RobotContainer {
             new Vision(
                 drive::addVisionMeasurement,
                 new VisionIOPhotonVisionSim(
-                    "camera 1 sim", new Transform3d(0, 0, 0, new Rotation3d()), drive::getPose)
-                 
-                );
+                    "camera 1 sim", new Transform3d(0, 0, 0, new Rotation3d()), drive::getPose));
+
         elevator = new Elevator(new ElevatorIO() {});
         scoralRollers =
             new ScoralRollers(
@@ -270,7 +257,6 @@ public class RobotContainer {
             new SuperStructure(drive, elevator, scoralArm, scoralRollers, led, climberArm, winch);
         break;
     }
-    
 
     NamedCommands.registerCommand(
         "L1",
@@ -322,20 +308,18 @@ public class RobotContainer {
             new WaitUntilCommand(() -> elevator.atGoal(2) && scoralArm.atGoal(2)),
             new ScoreAlgaeIntoBargeAuto(elevator, scoralArm, scoralRollers)));
 
-    
-
     NamedCommands.registerCommand(
         "SOURCE_INTAKE",
         new SequentialCommandGroup(
             new SetScoralArmTarget(
                 scoralArm, SubsystemConstants.ScoralArmConstants.STOW_SETPOINT_DEG, 2),
             new InstantCommand(() -> led.setState(LED_STATE.GREY)),
-             new InstantCommand(() -> scoralRollers.runVolts(1.4)),
+            new InstantCommand(() -> scoralRollers.runVolts(1.4)),
             new InstantCommand(() -> led.setState(LED_STATE.BLUE))));
     NamedCommands.registerCommand(
         "SEE_CORAL",
         new SequentialCommandGroup(
-             new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR)
+            new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR)
                 .withTimeout(1.3),
             new InstantCommand(() -> scoralRollers.stop())));
 
@@ -399,8 +383,6 @@ public class RobotContainer {
 
     autos = new SendableChooser<>();
 
-   
-
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", autos);
 
     // Set up SysId routines
@@ -449,14 +431,12 @@ public class RobotContainer {
                 () -> {
                   switchedToRobotRelative = true;
                 }));
-     
 
     configureButtonBindings();
-     
   }
 
   private void test() {
-    
+
     drive.setDefaultCommand(
         DriveCommands.joystickDrive(
             drive,
@@ -476,7 +456,6 @@ public class RobotContainer {
                 superStructure,
                 false,
                 () -> driveController.leftTrigger().getAsBoolean()));
-   
   }
 
   private void configureButtonBindings() {
@@ -595,7 +574,7 @@ public class RobotContainer {
                         led))
                 .andThen(new WaitUntilCommand(() -> superStructure.atGoals()))
                 .andThen(new InstantCommand(() -> superStructure.nextState())));
- 
+
     driveController
         .a()
         .onTrue(
@@ -667,20 +646,18 @@ public class RobotContainer {
                     () -> superStructure.setWantedState(SuperStructureState.SCORING_CORAL))));
   }
 
-  
-
   private void manipControls() {
-    
+
     /*then make an if statement that checks if the testStateMachine's target state is equal to el3, or el4.
     do this by using the getTargetState() method of the testStateMachine class
     if that is true create a new instantCommand that sets the superStructure's wanted state to L3 if the target state is el3
     then we can use the .andThen modifer to advance the target state of the testStateMachine
     then create an else if statement that checks if the target state is el4
-    if this is true then create a new instantCommand that sets the superStructure's wanted state to L4 
+    if this is true then create a new instantCommand that sets the superStructure's wanted state to L4
     then we can use the .andThen modifier to advance the target state of the testStateMachine*/
 
-   //finally try and explain what this code does in a comment
-    
+    // finally try and explain what this code does in a comment
+
     manipController
         .x()
         .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L3)));
@@ -740,8 +717,6 @@ public class RobotContainer {
             new ParallelCommandGroup(
                 new SetScoralArmTarget(scoralArm, 29, 2),
                 new SetClimberArmTarget(climberArm, 60, 2)));
-
-    
   }
 
   public Command getAutonomousCommand() {
