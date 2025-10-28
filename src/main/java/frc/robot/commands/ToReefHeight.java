@@ -13,25 +13,19 @@ import frc.robot.subsystems.scoral.ScoralArm;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ToReefHeight extends SequentialCommandGroup {
   /** Creates a new goToReefHeight. */
-  private final ScoralArm scoralArm;
+  //add your final variables of ScoralArm and Elevator 
 
-  private final Elevator elevator;
 
-  public ToReefHeight(
-      Elevator m_elevator, ScoralArm m_scoralArm, double heightInch, double pitchDegs) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    this.elevator = m_elevator;
-    this.scoralArm = m_scoralArm;
+  public ToReefHeight(x,y,z,h) {
+        //make this constructor take in  an elevator, scoral arm, heightInch, pitchDegs
 
     addCommands(
         new SequentialCommandGroup(
-            new SetElevatorTarget(elevator, heightInch, 15),
-            new SetScoralArmTarget(scoralArm, pitchDegs, 3.5)));
-    // new WaitUntilCommand(() -> elevator.atGoal(2)),
-    // scoralArm.setArmTarget(pitchDegs, 2)));
-    // new SetScoralArmTarget(pitchDegs, 2, m_scoralArm)));
-
-    //
+          //now in the sequentail command group add the following commands
+          //set the elevator to heightInch with a timeout of 15 seconds using setElevatorTarget
+          //use the setScoralArmTarget to set the scoral arm to pitchDegs with a timeout of 3.5 seconds
+        )
+    )
+    
   }
 }

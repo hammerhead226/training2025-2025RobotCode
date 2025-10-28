@@ -285,41 +285,36 @@ public class RobotContainer {
         new SequentialCommandGroup(
             new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR),
             new InstantCommand(() -> led.setState(LED_STATE.RED)),
+            //use the to reef height with the elevator, scoral arm, L1 setpoint inches, L3 coral scoring setpoint deg
             new ToReefHeight(
-                elevator,
-                scoralArm,
-                SubsystemConstants.ElevatorConstants.L1_SETPOINT_INCHES,
-                SubsystemConstants.ScoralArmConstants.L3_CORAL_SCORING_SETPOINT_DEG)));
+               )));
     NamedCommands.registerCommand(
         "L2",
         new SequentialCommandGroup(
             new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR),
             new InstantCommand(() -> led.setState(LED_STATE.RED)),
+            //use the new toReefHeigh with elevator and scorla arm, L2 setpoint inches, L2 coral scoring setpoint deg
             new ToReefHeight(
-                elevator,
-                scoralArm,
-                SubsystemConstants.ElevatorConstants.L2_SETPOINT_INCHES,
-                SubsystemConstants.ScoralArmConstants.L2_CORAL_SCORING_SETPOINT_DEG)));
+                
+              )));
     NamedCommands.registerCommand(
         "L3",
         new SequentialCommandGroup(
             new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR),
             new InstantCommand(() -> led.setState(LED_STATE.RED)),
+                //use the new toReefHeigh with elevator and scorla arm, L3 setpoint inches, L3 coral scoring setpoint deg
+
             new ToReefHeight(
-                elevator,
-                scoralArm,
-                SubsystemConstants.ElevatorConstants.L3_SETPOINT_INCHES,
-                SubsystemConstants.ScoralArmConstants.L3_CORAL_SCORING_SETPOINT_DEG)));
+                )));
     NamedCommands.registerCommand(
         "L4",
         new SequentialCommandGroup(
                 new WaitUntilCommand(() -> scoralRollers.seesCoral() == CoralState.SENSOR),
                 new InstantCommand(() -> led.setState(LED_STATE.RED)),
+                            //use the new toReefHeigh with elevator and scorla arm, L4 setpoint inches, L4 coral scoring setpoint deg
                 new ToReefHeight(
-                    elevator,
-                    scoralArm,
-                    SubsystemConstants.ElevatorConstants.L4_SETPOINT_INCHES,
-                    SubsystemConstants.ScoralArmConstants.L4_CORAL_SCORING_SETPOINT_DEG))
+
+                    ))
             .withTimeout(4));
 
     NamedCommands.registerCommand("BARGE_EXTEND", new BargeExtend(elevator, scoralArm));
@@ -722,16 +717,16 @@ public class RobotContainer {
   private void manipControls() {
     manipController
         .x()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L3)));
+        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.//set to L3)));
     manipController
         .y()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L4)));
+        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.//set to L4)));
     manipController
         .a()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L2)));
+        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.//set to L2)));
     manipController
         .b()
-        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.L1)));
+        .onTrue(new InstantCommand(() -> superStructure.setWantedState(SuperStructureState.//set to L1)));
 
     manipController
         .povDown()
@@ -770,6 +765,7 @@ public class RobotContainer {
     manipController
         .leftBumper()
         .onTrue(
+            
             new InstantCommand(
                 () -> superStructure.setWantedState(SuperStructureState.CORAL_INTAKE_ALGAE)));
 
