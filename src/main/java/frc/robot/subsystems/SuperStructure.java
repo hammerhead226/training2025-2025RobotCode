@@ -219,42 +219,41 @@ public class SuperStructure {
             new InstantCommand(() -> this.setCurrentState(SuperStructureState.STOW)),
             new InstantCommand(() -> this.setWantedState(SuperStructureState.STOW)));
       case L1:
-        currentState = SuperStructureState.L1;
-        lastReefState = SuperStructureState.L1;
-        return new ToReefHeight(
-            elevator,
-            scoralArm,
-            SubsystemConstants.ElevatorConstants.L1_SETPOINT_INCHES,
-            SubsystemConstants.ScoralArmConstants.L1_CORAL_SCORING_SETPOINT_DEG);
-
+      //set the current state to SuperStructureState.L1
+      //set the last reef state to SuperStructureState.L1
+        return new ToReefHeight();
+        //then return a new ToReefHeight command with the elevator, scoralArm, L1 setpoint inches, and L1 coral scoring setpoint deg
+       
       case L2:
-        currentState = SuperStructureState.L2;
-        lastReefState = SuperStructureState.L2;
+      //set the current state to SuperStructureState.L2
+      //set the last reef state to SuperStructureState.L2
+        
+
+      //then return a new ToReefHeight command with the elevator, scoralArm, L2 setpoint inches, and L2 coral scoring setpoint deg
         return new ToReefHeight(
-            elevator,
-            scoralArm,
-            SubsystemConstants.ElevatorConstants.L2_SETPOINT_INCHES,
-            SubsystemConstants.ScoralArmConstants.L2_CORAL_SCORING_SETPOINT_DEG);
-        // return new SequentialCommandGroup(
-        // new SetElevatorTarget(elevator, 6.8, 2), new SetScoralArmTarget(scoralArm, 71, 2));
+        );
+
+           
 
       case L3:
-        currentState = SuperStructureState.L3;
-        lastReefState = SuperStructureState.L3;
-        return new ToReefHeight(
-            elevator,
-            scoralArm,
-            SubsystemConstants.ElevatorConstants.L3_SETPOINT_INCHES,
-            SubsystemConstants.ScoralArmConstants.L3_CORAL_SCORING_SETPOINT_DEG);
+       //set the current state to SuperStructureState.L3
+      //set the last reef state to SuperStructureState.L3
+        
+
+      //then return a new ToReefHeight command with the elevator, scoralArm, L3 setpoint inches, and L3 coral scoring setpoint deg
+      return new ToReefHeight(
+        );
+
 
       case L4:
-        currentState = SuperStructureState.L4;
-        lastReefState = SuperStructureState.L4;
-        return new ToReefHeight(
-            elevator,
-            scoralArm,
-            SubsystemConstants.ElevatorConstants.L4_SETPOINT_INCHES,
-            SubsystemConstants.ScoralArmConstants.L4_CORAL_SCORING_SETPOINT_DEG);
+        //set the current state to SuperStructureState.L4
+      //set the last reef state to SuperStructureState.L4
+        
+
+      //then return a new ToReefHeight command with the elevator, scoralArm, L4 setpoint inches, and L4 coral scoring setpoint deg
+      return new ToReefHeight(
+        );
+
 
       case SOURCE:
         currentState = SuperStructureState.SOURCE;
