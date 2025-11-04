@@ -17,13 +17,11 @@ public class Elevator extends SubsystemBase {
 
   private final ElevatorIOInputsAutoLogged eInputs = new ElevatorIOInputsAutoLogged();
 
-  private static final LoggedTunableNumber kP = new LoggedTunableNumber("Elevator/kP");
-  private static final LoggedTunableNumber kI = new LoggedTunableNumber("Elevator/kI");
+    //create a private static final LoggedTunableNumber for kS, kG, kV, kA, kP, kI 
+  //use use the variable type LoogedTunableNumber and set the values to new LoggedTunableNumber("Elevator/kP") etc.
 
-  private static final LoggedTunableNumber kS = new LoggedTunableNumber("Elevator/kS");
-  private static final LoggedTunableNumber kG = new LoggedTunableNumber("Elevator/kG");
-  private static final LoggedTunableNumber kV = new LoggedTunableNumber("Elevator/kV");
-  private static final LoggedTunableNumber kA = new LoggedTunableNumber("Elevator/kA");
+  
+  
 
   // CHANGE THESE VALUES TO MATCH THE ELEVATOR
 
