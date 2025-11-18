@@ -1,45 +1,46 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.elevator.Elevator;
+// import your subsystem here
+// example: import frc.robot.subsystems.elevator.Elevator;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SetElevatorTarget extends Command {
-  /** Creates a new SetElevatorTarget. */
-  Elevator elevator;
 
-  double goalInch;
-  double thresholdInch;
+  // first create a variable for your subsystem
+  // name it elevator (or whatever subsystem you're using)
 
-  public SetElevatorTarget(Elevator elevator, double goalInch, double thresholdInch) {
-    this.elevator = elevator;
-    this.goalInch = goalInch;
-    this.thresholdInch = thresholdInch;
-    addRequirements(elevator);
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    elevator.setElevatorGoal(goalInch);
-  }
+  // now create two double variables
+  // one called goalInch which stores the target position
+  // and one called thresholdInch which stores how close is “good enough”
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
 
-  // Called once the command ends or is interrupted.
+  // now create the constructor
+  // the constructor should take in your subsystem
+  // and also take in the goalInch and thresholdInch values
+  // inside the constructor set your class variables equal to the values passed in
+  // and make sure to use addRequirements(subsystem) so the command owns the subsystem
+
+
+  // initialize()
+  // this runs once when the command starts
+  // inside this method you should call the subsystem method that sets the goal
+  // for example: elevator.setElevatorGoal(goalInch);
+
+
+  // execute()
+  // this runs every 20ms while the command is active
+  // for this command you probably don't need anything here
+
+
   @Override
   public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return Math.abs(elevator.getElevatorPosition() - goalInch) <= thresholdInch;
-  }
+
+  // isFinished()
+  // this method decides when the command ends
+  // return true when the current elevator position is within thresholdInch of goalInch
+  // example:
+  // return Math.abs(elevator.getElevatorPosition() - goalInch) <= thresholdInch;
+
 }
